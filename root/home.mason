@@ -1,0 +1,46 @@
+<%args>
+$username	=> ''
+@latest_entries => ()
+$pages => ''
+$on_page => 1
+</%args>
+
+<div style="width:100%; text-align:right; background-color:#EBEBEB;">
+% if($username eq '') {
+	<a href="/login" style="color:#000000;">[Login]</a>
+% } else {
+	Welcome, <% $username %> &nbsp;<a href="/account" style="color:#000000;">[Dashboard]</a> <a href="/logout" style="color:#000000;">[Logout]</a>
+% }
+</div>
+
+<h1 style="text-transform:uppercase;">My Blog Home</h1>
+
+% if(@latest_entries > 0) {
+%	for (@latest_entries) {
+		<div id="<% $_->id %>" class="entry" style="width:800px; border:1px dotted #000000; margin-bottom:5px;">
+			<h2><% $_->title %></h2>
+			<p style="margin-top:-25px; font-style:italic;">Posted on <% $_->posted %></p>
+			<span>
+				<% $_->body %>
+			</span>
+		</div>
+%	}
+%} else {
+	<p style="font-size:1.15em; font-style:italics;">No recent blog entries.</p>
+%}
+
+<span class="page">
+<%perl>
+	if($pages ne '') {
+		my $index = 1;
+		while($index <= $pages + 1) {
+			if($index == $on_page) {
+				print "[$index] ";
+			} else {
+				print "<a href=\"/$index\">[$index]</a> ";
+			}
+			$index++;
+		}
+	}
+</%perl>
+</span>

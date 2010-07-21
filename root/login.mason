@@ -1,0 +1,20 @@
+<%args>
+$error	=> ''
+</%args>
+
+<div id="login" style="width: 400px; margin:auto;">
+	<h1>Login To Account</h1>
+	<form name="login_form" method="POST">
+%	if($error ne '') {
+	<span class="error" style="color:red"><% $error %></span><br /><br />
+%	}
+		<label for="username">Username</label>
+		<input type="text" id="username" name="username" maxlength="128" /><br /><br />
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" maxlength="255" /><br /><br />
+		<input type="hidden" id="posted" name="posted" value="1" maxlength="255" />
+		<label for="remember" class="remember">Remember Me</label>
+		<input type="checkbox" id="remember" name="remember" class="checkbox" /><br />
+		<input type="submit" value="Login" class="submit" />
+	</form>
+</div>

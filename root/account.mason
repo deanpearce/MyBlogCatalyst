@@ -1,0 +1,30 @@
+<%args>
+$username	=> ''
+$info => ''
+</%args>
+
+<div style="width:100%; text-align:right; background-color:#EBEBEB;">
+	<a href="/" style="color:#000000;">[Visit Home]</a>
+% if($username eq '') {
+	<a href="/login" style="color:#000000;">[Login]</a>
+% } else {
+	<a href="/logout" style="color:#000000;">[Logout]</a>
+% }
+</div>
+
+<h1>Welcome, <% $username %></h1>
+
+<h2>New Blog Entry</h2>
+% if($info ne '') {
+	<span style="color:green">Post successfully created!</span><br /><br />
+%}
+
+<form name="new_entry" method="POST">
+Title<br />
+<input type="text" name="title" id="title" maxlength="255" />
+<br /><br />
+Body<br />
+<textarea name="body" id="body"></textarea>
+<br /><br />
+<input type="submit" value="Post" />
+</form>
